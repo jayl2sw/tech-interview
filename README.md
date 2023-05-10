@@ -8,19 +8,20 @@
 
 * [About](#about)
 
-* [Operating System](https://github.com/jayl2sw/tech-interview/)
+* [Operating System](https://github.com/jayl2sw/tech-interview/blob/master/os/README.md)
 
-* [Network](https://github.com/jayl2sw/tech-interview/)
+* [Network](https://github.com/jayl2sw/tech-interview/blob/master/network/README.md)
 
-* [Database](https://github.com/jayl2sw/tech-interview/)
+* [Database](https://github.com/jayl2sw/tech-interview/blob/database/spring/README.md)
 
-* [Spring](https://github.com/jayl2sw/tech-interview/)
+* [Spring](https://github.com/jayl2sw/tech-interview/blob/master/spring/README.md)
 
-* [Algorithm](https://github.com/jayl2sw/tech-interview/)
+* [Algorithm](https://github.com/jayl2sw/tech-interview/blob/master/algorithm/README.md)
 
-* [Etc](https://github.com/jayl2sw/tech-interview/)
+* [Etc](https://github.com/jayl2sw/tech-interview/blob/master/etc/README.md)
 
   
+
 </br>
 
 
@@ -42,7 +43,7 @@
 
 </br>
 
-## :four_leaf_clover: Operating System [Link](https://github.com/jayl2sw/tech-interview/)
+## :four_leaf_clover: Operating System [Link](https://github.com/jayl2sw/tech-interview/blob/master/os/README.md)
 
 1. 프로세스 & 스레드 🔴
 
@@ -70,7 +71,7 @@
 
 </br>
 
-## :four_leaf_clover: Database [Link](https://github.com/jayl2sw/tech-interview/)
+## :four_leaf_clover: Database [Link](https://github.com/jayl2sw/tech-interview/blob/master/database/README.md)
 
 1. RDB & NoSQL 🔴
 
@@ -94,7 +95,7 @@
 </br>
 
 
-## :four_leaf_clover: Network [Link](https://github.com/jayl2sw/tech-interview/)
+## :four_leaf_clover: Network [Link](https://github.com/jayl2sw/tech-interview/blob/master/network/README.md)
 
 0. www.naver.com 🔴
 
@@ -110,19 +111,21 @@
 
 6. 쿠키 & 세션 🟠
 
-7. 소켓 🟠
+7. CORS 🟠
 
-8. CORS 🟠
+8. DNS 🟠
 
-9. DNS 🟠
+9. 서브넷 마스크 & 게이트웨이 🟠
 
-10. 서브넷 마스크 & 게이트웨이 🟠
+10. 소켓 🟡
+
+    
 
 
 </br>
 
 
-## :four_leaf_clover: Spring & Java [Link](https://github.com/jayl2sw/tech-interview/)
+## :four_leaf_clover: Java & Spring [Link](https://github.com/jayl2sw/tech-interview/blob/master/spring/README.md)
 
 1. JVM (구조, 컴파일) 🔴
 
@@ -158,7 +161,7 @@
 </br>
 
 
-## :four_leaf_clover: Etc [Link](https://github.com/jayl2sw/tech-interview/)
+## :four_leaf_clover: Etc [Link](https://github.com/jayl2sw/tech-interview/blob/master/etc/README.md)
 
 1. 객체지향 🔴
 

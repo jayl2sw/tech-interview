@@ -2,7 +2,7 @@
 
 > Since 2023. 05. 10	by Jay Lee
 
-
+</br>
 
 ## Table of Contents
 
@@ -21,7 +21,7 @@
 * [Etc](https://github.com/jayl2sw/tech-interview/)
 
   
-
+</br>
 
 
 ## About
@@ -31,115 +31,156 @@
 혹시나 문제 추가 또는 답변 수정 등의 제안이 있다면 PR 부탁드립니다!
 
 
+</br>
 
 
+#### 중요도
+🔴: 필수
+🟠: 초급
+🟡: 심화
+⚪: TMI
+
+</br>
 
 ## :four_leaf_clover: Operating System [Link](https://github.com/jayl2sw/tech-interview/)
 
-1. 프로세스 & 스레드 :red_circle:
-2. 프로세스 주소 공간
-3. 컨텍스트 스위칭 :red_circle:
-4. 스케쥴러 
-5. 스케쥴링 알고리즘
-6. 뮤텍스 & 세마포어 & 모니터 :red_circle:
-7. Deadlock 
-8. 가상 메모리 :red_circle: 
-9. 세그멘테이션 & 페이징
-10. TLB (Translation Lookaside Buffer)
+1. 프로세스 & 스레드 🔴
 
-11. 파일 시스템
-12. 페이지 교체 알고리즘
+2. 프로세스 주소 공간 🟠
 
+3. 컨텍스트 스위칭 🔴
 
+4. 스케쥴러 🟠
+
+5. 스케쥴링 알고리즘 🟠
+
+6. 뮤텍스 & 세마포어 & 모니터 🔴
+
+7. Deadlock 🟠
+
+8. 가상 메모리 🔴
+
+9. 세그멘테이션 & 페이징 🟠
+
+10. TLB (Translation Lookaside Buffer) 🟡
+
+11. 파일 시스템 🟡
+
+12. 페이지 교체 알고리즘 🟠
+
+</br>
 
 ## :four_leaf_clover: Database [Link](https://github.com/jayl2sw/tech-interview/)
 
-1. RDB & NoSQL
-2. 트랜잭션(Transaction) :red_circle:
-3. 트랜잭션 격리 수준
-4. 인덱스 (Index) :red_circle:
-5. 정규화 
-6. 락 (Lock)
-7. 커넥션 풀
-8. 트래픽 관리
-9. 데이터베이스 튜닝
+1. RDB & NoSQL 🔴
 
+2. 트랜잭션(Transaction) 🔴
+
+3. 트랜잭션 격리 수준 🟠
+
+4. 인덱스 (Index) 🔴
+
+5. 정규화 🔴
+
+6. 락 (Lock) 🟠
+
+7. 커넥션 풀 🟠
+
+8. 트래픽 관리 🟡
+
+9. 데이터베이스 튜닝 🟡
+
+
+</br>
 
 
 ## :four_leaf_clover: Network [Link](https://github.com/jayl2sw/tech-interview/)
 
-0. www.naver.com
-1. RESTful API
-2. OSI 7 Layer
-3. HTTP
-4. TCP/IP
-5. 3-Way Handshake & 4-Way Handshake
-6. 쿠키 & 세션
-7. 소켓
-8. CORS
-9. DNS
-10. 서브넷 마스크 & 게이트웨이
+0. www.naver.com 🔴
 
+1. RESTful API 🔴
+
+2. OSI 7 Layer 🔴
+
+3. HTTP 🟠
+
+4. TCP/IP 🟠
+
+5. 3-Way Handshake & 4-Way Handshake 🟠
+
+6. 쿠키 & 세션 🟠
+
+7. 소켓 🟠
+
+8. CORS 🟠
+
+9. DNS 🟠
+
+10. 서브넷 마스크 & 게이트웨이 🟠
+
+
+</br>
 
 
 ## :four_leaf_clover: Spring & Java [Link](https://github.com/jayl2sw/tech-interview/)
 
-1. JVM (구조, 컴파일)
+1. JVM (구조, 컴파일) 🔴
 
-2. GC (Garbage Collection)
+2. GC (Garbage Collection) 🔴
 
-3. 자바의 원시타입 
+3. 자바의 원시타입 🔴
 
-4. 인터페이스 vs 추상클래스
+4. 인터페이스 vs 추상클래스 🔴
 
-5. 리플렉션
+5. 리플렉션 🟠
 
-6. Exception
+6. Exception 🟠
 
-7. Spring의 사용이유
+7. Spring의 사용이유 🔴
 
-8. IoC & DI
+8. IoC & DI 🔴
 
-9. Spring MVC 구조
+9. Spring MVC 구조 🟠
 
-10. Dispatcher Servlet
+10. Dispatcher Servlet 🟠
 
-11. AOP
+11. AOP 🟠
 
-12. Interceptor & Filter
+12. Interceptor & Filter 🟠
 
-13. JPA
+13. JPA 🟠
 
-14. Transactional
+14. Transactional 🟠
 
-15. Unit Test
+15. Unit Test 🟠
 
-    
 
+</br>
 
 
 ## :four_leaf_clover: Etc [Link](https://github.com/jayl2sw/tech-interview/)
 
-1. 객체지
-2. 웹서버 & WAS
-3. Nginx
-4. Interpretor language & compile language
-5. Blocking & Non-blocking, Sync & Async
-6. 로드 밸런서
+1. 객체지향 🔴
+
+2. 웹서버 & WAS 🟠
+
+3. Nginx ⚪
+
+4. Interpretor language & compile language 🟡
+
+5. Blocking & Non-blocking, Sync & Async 🔴
+
+6. 로드 밸런서 🟡
 
 
-
+</br>
 
 
 ## Collaborator
 
 jayl2sw
 
-
-
-
-
-
+</br>
 
 ## Reference
 

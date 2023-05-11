@@ -1,3 +1,221 @@
 # Algorithm
 
 > 일반적으로 코딩테스트에 사용되는 알고리즘들에 대한 개념을 정리합니다.
+
+## Index
+
+### 손코딩
+
+* [배열에서 K번째로 큰 수 찾기](#N 길이의 배열에서 K번째로 큰 수 찾기)
+
+### LeetCode
+
+* [1. 리스트의 두 수의합 O(n)](#1. 리스트의 두 수의합 O(n) Link)
+* [2. 최솟값과 최대값을 제외한 수들의 평균값](#2. 최솟값과 최대값을 제외한 수들의 평균값 Link)
+
+* [3. 1개만 있는 수](#3. 1개만 있는 수 Link)
+
+
+
+## 손코딩
+
+#### N 길이의 배열에서 K번째로 큰 수 찾기
+
+* QuickSelect 함수를 이용해서 쓸 수 있다.
+
+```python
+ partition(arr, pivot)                       # pivot이 몇번째로 큰 숫자인지 반환
+
+    if k == pivot_index:                     # k 번째 큰 수를 찾고자한다.
+        return arr[k]
+    elif k > pivot_index:                    # 만약 pivot이 k보다 작으면
+        return quickSelect(arr[pivot_index + 1:], k - pivot_index - 1)   # 값이 더 작은 애들 중에서 k-pivot_idx-1 찾아야함
+    else:                                               # 만약 pivot이 k보다 크면
+        return quickSelect(arr[:pivot_index], k)  		# 더 큰 애들 중에서 k번째를 찾아야한다.
+
+
+def partition(arr, pivot_idx):
+    pivot_value = arr[pivot_idx]
+    result = 0
+
+    arr[pivot_idx], arr[-1] = arr[-1], arr[pivot_idx]
+
+    for i in range(len(arr) - 1):
+        if arr[i] > pivot_value:						# 기준보다 크면
+            arr[i], arr[result] = arr[result], arr[i]	# 앞으로 보냄
+            result += 1
+
+    arr[result], arr[-1] = arr[-1], arr[result]
+
+    return result
+```
+
+##### Point
+
+* QuickSelect는 quicksort와 유사한 방식으로 동작한다. 다만 전체 정렬을 진행하지 않고 K번째를 찾아가는데 필요한 부분만 진행을 한다.
+
+```python
+# quickSort
+def quickSort(arr, start, end):
+    if start >= end:
+        return
+    mid = (start + end) // 2
+    pivot = arr[mid]
+    now = start
+    arr[mid], arr[end] = arr[end], arr[mid]
+
+    for i in range(start, end):
+        if pivot > arr[i]:
+            arr[i], arr[now] = arr[now], arr[i]
+            now += 1
+
+    arr[end], arr[now] = arr[now], arr[end]
+    quickSort(arr, start, now-1)
+    quickSort(arr, now+1, end)
+```
+
+
+
+## Array
+
+### 1. 리스트의 두 수의합 O(n) [Link](https://leetcode.com/problems/two-sum/)
+
+리스트의 두 수의 합이 target이 되는 수 두개를 List로 반환하시오.
+
+```python
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        check = {}
+        for i in range(len(nums)):
+            if nums[i] in check:
+                return [i, check[nums[i]]]
+            check[target - nums[i]] = i
+```
+
+##### Point
+
+* check의 경우 HashTable을 사용하는 dictionary 또는 set을 사용한다 => O(1)
+* 1번의 순회만으로 이를 해결할 수 있도록 target-nums[i]를 check에 저장해둔다. => O(1)
+
+
+
+### 2. 최솟값과 최대값을 제외한 수들의 평균값 [Link](https://leetcode.com/problems/average-salary-excluding-the-minimum-and-maximum-salary/)
+
+리스트가 주어졌을 때 최솟값과 최대값을 제외한 수들의 평균값을 구하시오.
+
+```python
+def average(salary) -> float:
+    q = []
+    for i in salary:
+        heapq.heappush(q, salary[i]) 		# O(nlogn)
+        
+    # heapq.heapyfy(salary) 를 이용하면 list를 heapq 형태로 빠르게 변환할 수 있다. O(n)
+
+    heapq.heappop(q)					# O(nlogn)
+    answer = 0
+    while len(q) > 1:
+        answer += heapq.heappop(q)		# O(nlogn)
+
+    return answer / (len(salary)-2) 
+
+
+def average2(salary) -> float:
+    salary.remove(max(salary))			# O(n)	-> 2n
+    salary.remove(min(salary))			# O(n)	-> 2n
+    return sum(salary)/len(salary)		# O(n)	-> n
+
+def average3(salary) -> float:
+    salary.sort()						# O(nlogn) -> nlogn
+	return sum(salary[1:-1]) /(len(salary)-2) # O(n) -> 2n
+
+def average4(salary) -> float:
+    salary.sort()						# O(nlogn) -> nlogn
+	return (sum(salary) - salary[0] - salary[-1]) /(len(salary)-2) # O(n) -> n
+
+# Test 결과 (n= 2, 000, 000)
+solution1 time :  3.095670461654663 	# 3nlogn
+solution2 time :  0.48767900466918945 	# 5n
+solution3 time :  0.6692276000976562 	# 2n + nlogn
+solution4 time :  0.6733450889587402	# n + nlogn
+```
+
+첫번째 풀이의 경우 heap을 사용해서 O(nlogn)으로 풀이가 가능하다.
+
+두번째 풀이의 경우 빌트인 메서드인 max, min과 remove을 이용해서 문제를 풀었는데 생각보다 문제 2번의 속도가 더 빨라서 메서드 내부 구조를 확인해보았다.
+
+##### Point
+
+* sort() 메서드는 Timsort 알고리즘을 사용하며 stable하고
+  * `stable sort` : 동일한 값이 있는 경우, 이들의 상대적인 위치가 유지되는 정렬 방식
+  * `unstable sort` : 동일한 값이 있는 경우 상대적인 위치를 보장하지 않는 방식, 일반적으로 성능은 더 좋음
+* heapq.heapyfy(salary) 를 이용하면 list를 heapq 형태로 빠르게 변환할 수 있다. O(n)
+
+
+
+### 3. 1개만 있는 수 [Link](https://leetcode.com/explore/interview/card/top-interview-questions-easy/92/array/549/)
+
+숫자들로 이루어진 리스트가 주어진다. 그 중 하나의 숫자만 1개가 있고 나머지 숫자들은 2개씩 있을 때, 1개만 있는 숫자를 구하시오.
+
+```python
+def findSingleNumber1(nums: List[int]) -> int:
+    check = set()
+    for i in range(len(nums)):			
+        if nums[i] in check:					# O(1)
+            check.remove(nums[i])				
+        else:
+            check.add(nums[i])
+
+    return list(check)[0]
+
+def findSingleNumber2(nums: List[int]) -> int:
+    answer = 0
+    for num in nums:
+        answer ^= num
+
+    return answer
+```
+
+##### Point
+
+* 가장 쉽게 생각하는 방법이 순회하면서 각 value마다 flag를 두어 1번 있는지 2번 있는지를 확인하는 것이다. 하지만 이 때, dictionary나 set이 사용되어 추가적인 메모리가 필요하게 된다. (dictionary와 set의 경우 HashTable로 구현되어 있어 탐색시 O(1)의 시간복잡도를 가진다.)
+
+* 같은 수끼리 XOR 연산을 하게 되면 0이 되는 성질을 사용하면 O(N)으로 풀 수 있다.
+
+  
+
+### 4. Intersection of Two Arrays [Link](https://leetcode.com/explore/interview/card/top-interview-questions-easy/92/array/674/)
+
+두 리스트가 주어졌을 때, 공통 원소를 가지는 List를 반환하시오. 만약 같은 원소가 2개 이상 들어 있을 시에는 똑같이 2개를 반환하여야한다.
+
+```python
+def intersect(self, nums1, nums2):   
+    d = defaultdict(int)
+    for a in nums1:					# n
+        d[a] += 1					# O(1)
+        
+    result = []
+    for b in nums2:					# n
+        if d[b] > 0:				# O(1)
+            result.append(b)		
+            d[b] -= 1				
+
+    return result					# 최종 O(n)
+
+def intersect2(self, nums1, nums2):
+    result = []
+    if len(nums1) >= len(nums2):
+        nums1, nums2 = nums2, nums1
+        
+    for i in range(len(nums1)):						# n
+        if nums1[i] in nums1 and nums1[i] in nums2:	# O(n)
+            result.append(nums1[i])
+            nums2.remove(nums1[i])					# O(n)
+                    
+     return result									# 최종 O(n^2)
+```
+
+##### Point
+
+* 첫 번째 해결책의 경우 dictionary를 사용하여 해당 A에 대한 값들을 적어놓고 다시 B를 순회하면서 dictionary 값들을 수정하고 이를 기반으로 result를 구하는 방법이다. dictionary의 경우 추가, 변경, 조회의 시간복잡도가 O(1)이기 때문에 최종적으로 O(N)의 시간복잡도를 가진다. 하지만 이 방법의 경우 dictionary 사용으로 인한 추가 메모리가 사용된다.
+* 두 번째 해결책의 경우 주어진 두개의 리스트만을 사용(추가 메모리 사용 x)해서 풀이하는 방식이다. 이 경우는 for문 내에 list의 in이 사용되기 때문에 O(n^2)의 시간 복잡도를 가진다. 특히 이 때 for문을 더 짧은 Array를 사용하는것이 시간적으로 이득이다.
+* 두 가지 방법으로 문제를 풀이하였는데 모든 개발자들은 각자 주어진 환경이 다를 것이다. 시간 최적화가 필요할 수도, 메모리 최적화가 필요할 수도 있다. 각자의 환경에 적합한 알고리즘을 짤 수 있어야 한다.

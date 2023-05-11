@@ -6,14 +6,16 @@
 
 ### 손코딩
 
-* [배열에서 K번째로 큰 수 찾기](#N 길이의 배열에서 K번째로 큰 수 찾기)
+* [배열에서 K번째로 큰 수 찾기](#N-길이의-배열에서-K번째로-큰-수-찾기)
+
 
 ### LeetCode
 
-* [1. 리스트의 두 수의합 O(n)](#1. 리스트의 두 수의합 O(n) Link)
-* [2. 최솟값과 최대값을 제외한 수들의 평균값](#2. 최솟값과 최대값을 제외한 수들의 평균값 Link)
+* [1. 리스트의 두 수의합 O(n)](#1.-리스트의-두-수의합-O(n)-Link)
 
-* [3. 1개만 있는 수](#3. 1개만 있는 수 Link)
+* [2. 최솟값과 최대값을 제외한 수들의 평균값](#2.-최솟값과-최대값을-제외한-수들의-평균값-Link)
+
+* [3. 1개만 있는 수](#3.-1개만-있는-수-Link)
 
 
 
@@ -24,7 +26,14 @@
 * QuickSelect 함수를 이용해서 쓸 수 있다.
 
 ```python
- partition(arr, pivot)                       # pivot이 몇번째로 큰 숫자인지 반환
+def quickSelect(arr, k):
+	if len(arr) == 1:  # 배열에 하나의 요소만 남았을 경우
+        return arr[0]
+
+    # pivot 값을 랜덤하게 선택합니다.
+    pivot_index = random.randint(0, len(arr) - 1)
+    pivot_index = partition(arr, pivot_index)
+	partition(arr, pivot)                       # pivot이 몇번째로 큰 숫자인지 반환
 
     if k == pivot_index:                     # k 번째 큰 수를 찾고자한다.
         return arr[k]

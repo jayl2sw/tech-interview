@@ -8,14 +8,22 @@
 
 * [배열에서 K번째로 큰 수 찾기](#N-길이의-배열에서-K번째로-큰-수-찾기)
 
-
 ### LeetCode
+
+##### [배열 (Array)](#Array)
 
 * [1. 리스트의 두 수의합 O(n)](#1.-리스트의-두-수의합-O(n)-Link)
 
 * [2. 최솟값과 최대값을 제외한 수들의 평균값](#2.-최솟값과-최대값을-제외한-수들의-평균값-Link)
 
 * [3. 1개만 있는 수](#3.-1개만-있는-수-Link)
+
+* [4. Intersection of Two Arrays](#4.-Intersection-of-Two-Arrays-Link)
+
+* [5. Move Zeros](#5. Move-Zeros)
+
+
+##### [문자열 (String)](#String)
 
 
 
@@ -108,6 +116,8 @@ class Solution:
 
 
 
+<br>
+
 ### 2. 최솟값과 최대값을 제외한 수들의 평균값 [Link](https://leetcode.com/problems/average-salary-excluding-the-minimum-and-maximum-salary/)
 
 리스트가 주어졌을 때 최솟값과 최대값을 제외한 수들의 평균값을 구하시오.
@@ -161,6 +171,8 @@ solution4 time :  0.6733450889587402	# n + nlogn
 
 
 
+<br>
+
 ### 3. 1개만 있는 수 [Link](https://leetcode.com/explore/interview/card/top-interview-questions-easy/92/array/549/)
 
 숫자들로 이루어진 리스트가 주어진다. 그 중 하나의 숫자만 1개가 있고 나머지 숫자들은 2개씩 있을 때, 1개만 있는 숫자를 구하시오.
@@ -190,7 +202,10 @@ def findSingleNumber2(nums: List[int]) -> int:
 
 * 같은 수끼리 XOR 연산을 하게 되면 0이 되는 성질을 사용하면 O(N)으로 풀 수 있다.
 
-  
+
+
+
+<br>
 
 ### 4. Intersection of Two Arrays [Link](https://leetcode.com/explore/interview/card/top-interview-questions-easy/92/array/674/)
 
@@ -228,3 +243,218 @@ def intersect2(self, nums1, nums2):
 * 첫 번째 해결책의 경우 dictionary를 사용하여 해당 A에 대한 값들을 적어놓고 다시 B를 순회하면서 dictionary 값들을 수정하고 이를 기반으로 result를 구하는 방법이다. dictionary의 경우 추가, 변경, 조회의 시간복잡도가 O(1)이기 때문에 최종적으로 O(N)의 시간복잡도를 가진다. 하지만 이 방법의 경우 dictionary 사용으로 인한 추가 메모리가 사용된다.
 * 두 번째 해결책의 경우 주어진 두개의 리스트만을 사용(추가 메모리 사용 x)해서 풀이하는 방식이다. 이 경우는 for문 내에 list의 in이 사용되기 때문에 O(n^2)의 시간 복잡도를 가진다. 특히 이 때 for문을 더 짧은 Array를 사용하는것이 시간적으로 이득이다.
 * 두 가지 방법으로 문제를 풀이하였는데 모든 개발자들은 각자 주어진 환경이 다를 것이다. 시간 최적화가 필요할 수도, 메모리 최적화가 필요할 수도 있다. 각자의 환경에 적합한 알고리즘을 짤 수 있어야 한다.
+
+
+
+<br>
+
+### 5. Move Zeros [Link](https://leetcode.com/explore/interview/card/top-interview-questions-easy/92/array/567/)
+
+정수 배열 'nums'가 주어지면 0이 아닌 요소의 상대적 순서를 유지하면서 모든 '0'을 끝으로 이동합니다.  단, 어레이를 복사하지 않고 내부에서 이 작업을 수행해야 합니다
+
+```python
+def moveZeroes(nums) -> None:	# Array를 복사했을 때, 
+    N = len(nums)
+    result = []
+    for num in nums:							# O(n)
+        if num:
+            result.append(num)
+            
+    for _ in range(len(result), N):				# O(k) k는 0의 개수
+        result.append(0)
+
+    nums[:] = result
+    
+def moveZeros2(nums) -> None:
+    N = len(nums)
+    j = 0
+    for i in range(N):							# O(n)
+        if nums[i] != 0:
+            nums[i], nums[j] = nums[j], nums[i]
+            j += 1
+
+    while j < N:								# O(k)
+        nums[j] = 0
+        j += 1
+    
+```
+
+##### Point
+
+* 가장 쉽게 생각할 수 있는 방법은 0이 아닌 것들을 별도의 array에 담아서 복사하는 것이다. 하지만 이렇게 했을 경우 추가적인 메모리를 사용한다. index를 이용해서 원소끼리의 위치 변경을 꾀하는 것이 대부분의 경우 메모리적으로 빠르다.
+
+
+
+<br>
+
+---
+
+### String
+
+#### 1. Reverse String
+
+```java
+class Solution {
+    public void reverseString(char[] s) {
+        int A = s.length / 2;
+        for (int i=0; i < A ; i++) {				// O(n)
+            swap(s, i, s.length-i-1);   
+        }
+    }
+    
+    private void swap(char[] s, int i, int j) {
+        char tmp = s[i];
+        s[i] = s[j];
+        s[j] = tmp;
+    }
+}
+```
+
+```python
+def reverseString(s):
+    return s[::-1]
+```
+
+##### Point
+
+* 절반까지만 순회하는 것이 중요하다. 파이썬의 경우 슬라이싱으로 쉽게 할 수 있다.
+* Java에서 몫을 구하는 연산자는 `/`이다.(python은 //)
+
+
+
+<br>
+
+#### 2. Reverse Integer[Link]()
+
+부호 있는 32비트 정수 x가 지정되면 숫자가 반대로 된 x를 반환합니다. x를 반대로 설정하면 값이 서명된 32비트 정수 범위[-2^31, 2^31 - 1]를 벗어나면 0을 반환합니다
+
+```java
+class Solution {
+    public int reverseInteger(int x) {
+        int flag = x < 0 ? 1 : 0;
+        if (flag == 1){
+            x = -x;
+        }
+            
+        int result = 0;
+        while (x > 0) {
+            if (result > Integer.MAX_VALUE / 10) {
+                return 0;
+            }
+            result = result * 10 + x % 10;
+            x /= 10;
+        }
+        
+        result = flag == 0 ? result : -result;
+        return -Math.pow(2, 31) <= result && result <= Math.pow(2, 31)-1 ? result : 0;
+    }
+}
+```
+
+##### Point
+
+* 이 문제에서 신경써야할 부분은 크게 2가지였다. 음수일 때의 -부호 처리와 정수범위를 벗어났을 때의 예외처리가 필요한 문제였다.
+* 이 때, 2*31즉, 2147483648보다 result가 커지게되면, overflow가 발생해서 값이 왜곡되어 대소비교의 의미가 없어진다. 따라서 곱하기 연산을 수행하기전 result 값의 크기를 이용해서 예외 처리를 해야한다.
+
+
+
+<br>
+
+#### 3. First Unique Character in String  [Link](https://leetcode.com/explore/interview/card/top-interview-questions-easy/127/strings/881/)
+
+주어진 문자열에서 반복되지 않는 첫 번째 문자를 찾은 후 인덱스를 반환합니다. 존재하지 않으면 -1을 반환합니다. 주어진 문자열은 영어 소문자로 이루어져 있습니다.
+
+```python
+def firstUniqChar(s:str) -> int:
+    check = dict()
+    arr = list(s)
+    for i in range(len(s)):
+        if arr[i] in check:
+            arr[check[arr[i]]] = "."
+            arr[i] = "."
+        else:
+            check[arr[i]] = i
+
+    for i in range(len(arr)):
+        if arr[i] != ".":
+            return i
+
+    return -1
+
+def firstUniqChar2(s:str) -> int:					# pythonic한 방식
+	was = set()
+    for i in range(len(s)):							# n번 반복
+        if s[i] in was:
+            continue
+
+        try:
+            s.index(s[i], s.index(s[i], 0) + 1)		# 이후의 substring에서 찾아봄 O(n)																 
+        except:										# 없으면 리턴
+            return i
+
+        was.add(s[i])
+    return -1										# O(n^2)
+
+def firstUniqChar3(s:str) -> int:					# s의 경우 영어 소문자라는 것을 사용
+    result = []
+    for char in range(ord("a"), ord("z") + 1):		# index를 사용하지 않더라도 그냥 for 문
+        try:										# 돌면서 찾아도 될 것 같다.
+            a = s.index(chr(char))
+            try:
+                s.rindex(chr(char), a+1)
+            except:
+                result.append(a)
+
+                continue
+
+        except:
+            continue
+
+    return min(result) if result else -1
+
+# solution1 time :  0.01300358772277832
+# solution2 time :  0.0020034313201904297
+# solution3 time :  0.0
+```
+
+##### Point
+
+* 왜 solution2가 solution1보다 빠른가?
+
+
+
+<br>
+
+#### 4. Valid Anagram [Link](https://leetcode.com/explore/interview/card/top-interview-questions-easy/127/strings/882/)
+
+주어진 두개의 문자열이 Anagram인지 반환하시오. 이 때, `Anagram`이란 하나의 단어에 존재하는 알파벳들을 재배치하여 다른 단어를 만들 수 있음을 의미한다.
+
+```python
+def isAnagram(s: str, t: str) -> bool:
+    d = dict()
+    for char in s:
+        if char in d:
+            d[char] += 1
+        else:
+            d[char] = 1
+
+    for char in t:
+        if char in d:
+            d[char] -= 1
+            if not d[char]:
+                d.pop(char)
+        else:
+            return False
+
+    return False if d else True
+```
+
+
+
+<br>
+
+#### 5. Valid Palindrome [Link](https://leetcode.com/explore/interview/card/top-interview-questions-easy/127/strings/883/)
+
+`Palindrome`이란 모든 대문자를 소문자로 변환하고, 영숫자를 제외한 모든 문자를 제거한 후 뒤에서 앞으로 읽었을 때 같은 단어를 의미합니다.
+
+주어진 문자열이 palindrome인지를 반환하세요

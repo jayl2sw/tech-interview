@@ -18,6 +18,8 @@
 
 * [Algorithm](https://github.com/jayl2sw/tech-interview/blob/master/algorithm/README.md)
 
+* [Short Coding](https://github.com/jayl2sw/tech-interview/blob/master/short_coding/README.md)
+
 * [Etc](https://github.com/jayl2sw/tech-interview/blob/master/etc/README.md)
 
   
